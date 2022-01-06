@@ -1,0 +1,174 @@
+:root {
+    --font-size: 5.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100vh;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: myTextFont;
+    src: url(./font/Teko/Teko-Bold.ttf);
+ }
+
+.app {
+    width: 100%;
+    height: 100%;
+    background-color: #0f0e0e;
+    position: relative;
+    user-select: none;
+}
+
+.oclock-digital {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oclock-digital span {
+    font-family: myTextFont;
+    font-size: var(--font-size);
+    color: #fff;
+    text-shadow: 4px 4px 0px #1089ff;
+}
+
+.btn-toggle-fullscreen {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: block;
+}
+
+.btn-toggle-fullscreen span{
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #fff;
+}
+
+.btn-toggle-fullscreen:hover,
+.btn-toggle-fullscreen:focus {  
+    animation: bloom 0.3s ease;
+}
+
+.btn-toggle-fullscreen.isFull:hover,
+.btn-toggle-fullscreen.isFull:focus{  
+    animation: shrink 0.3s ease;
+}
+
+@keyframes bloom {
+    to {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@keyframes shrink {
+    to {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.btn-toggle-fullscreen span::after{
+    content:"";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background-color: #fff;
+}
+
+.top-left-corner,
+.top-left-corner::after {
+    top: 0;
+    left: 0;
+}
+
+.top-right-corner,
+.top-right-corner::after {
+    top: 0;
+    right: 0;
+}
+
+.bottom-left-corner,
+.bottom-left-corner::after {
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right-corner,
+.bottom-right-corner::after {
+    bottom: 0;
+    right: 0;
+}
+
+.btn-toggle-fullscreen.isFull .top-left-corner,
+.btn-toggle-fullscreen.isFull .bottom-left-corner {
+    left: 10px;
+}
+
+.btn-toggle-fullscreen.isFull .top-left-corner::after {
+    top: 8px;
+    left: -8px;
+}
+
+.btn-toggle-fullscreen.isFull .bottom-left-corner::after {
+    bottom: 8px;
+    left: -8px;
+}
+
+.btn-toggle-fullscreen.isFull .top-right-corner,
+.btn-toggle-fullscreen.isFull .bottom-right-corner {
+    right: 10px;
+}
+
+.btn-toggle-fullscreen.isFull .top-right-corner::after {
+    top: 8px;
+    right: -8px;
+}
+
+.btn-toggle-fullscreen.isFull .bottom-right-corner::after {
+    bottom: 8px;
+    right: -8px;
+}
+
+#hour, #minutes, #seconds {
+    display: inline-block
+}
+/* medium screen */
+@media only screen and (min-width: 641px){
+    :root {
+        --font-size: 11rem;
+    }
+    
+    .oclock-digital span {
+        text-shadow: 6px 6px 0px #1089ff;
+    }
+}
+/* large screen */
+@media only screen and (min-width: 1008px){
+    :root {
+        --font-size: 18rem;
+    }
+    .btn-toggle-fullscreen {
+        display: none;
+    }
+}
+/* big screen */
+@media only screen and (min-width: 1200px){
+    :root {
+        --font-size: 20rem;
+    }
+}

@@ -5,29 +5,34 @@ const second = document.querySelector('#second')
 
 const btnToggle = document.querySelector('#btn-toggle-fullscreen')
 
+let interval
+
 const app = {
 
     countDown: function () {
-        setInterval(() => {
+        interval = setInterval(() => {
             this.getTimer()
         }, 1000);
     },
 
     getTimer: function () {
 
-        const date = new Date()
+        let date = new Date()
 
         // get and set hour
-        let h = 24 - (date.getHours() + 1)
-        h = (h + '').length == 1 ? ('0' + h) : h
+        let h = 24 - date.getHours()
         // get and set minute
         let m = 60 - date.getMinutes()
-        m = (m + '').length == 1 ? ('0' + m) : m
-        // get 
+        h = (m > 0) ? --h : h
+        h = (h + '').length == 1 ? ('0' + h) : h
+
+        // get and set second
         let s = 60 - date.getSeconds()
+        m = (s > 0) ? --m : m
+        m = (m + '').length == 1 ? ('0' + m) : m
         s = (s + '').length == 1 ? ('0' + s) : s
         
-        let isMinHour =  h == '00' ? true : false
+        let isMinHour =  (h == '00') ? true : false
         isMinHour && (hour.style.display = 'none')
 
         hour.textContent = h + ':'
@@ -73,6 +78,7 @@ const app = {
         document.addEventListener('dblclick', () => {
             this.toggleFullScreen()
         })
+
     }
 
 }

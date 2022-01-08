@@ -43,8 +43,8 @@ const app = {
 
     toggleFullScreen: function () {
 
-        var doc = document;
-        var docEl = doc.documentElement;
+        var doc = window.document;
+        var docEl = document.querySelector('#oclock-digital');
 
         var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
         var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
@@ -63,11 +63,16 @@ const app = {
 
         this.countDown()
 
-        const elem = document.documentElement
+        // const elem = document.documentElement
 
         document.onkeyup = (e) => {
-            if(e.key === 'f') {
-               this.toggleFullScreen()
+            switch (e.key) {
+                case 'f':
+                    this.toggleFullScreen()
+                    break;
+            
+                default:
+                    break;
             }
         }
 
@@ -78,6 +83,12 @@ const app = {
         document.addEventListener('dblclick', () => {
             this.toggleFullScreen()
         })
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                btnToggle.classList.remove('isFull')
+            }
+        });
 
     }
 
